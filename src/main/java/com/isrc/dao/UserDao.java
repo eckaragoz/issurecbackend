@@ -66,6 +66,7 @@ public class UserDao {
             user = userrepo.findByUsername(username);
             usermap.put(user.getUsername(),user);
           }
+
           else user = usermap.get(username);
 
 

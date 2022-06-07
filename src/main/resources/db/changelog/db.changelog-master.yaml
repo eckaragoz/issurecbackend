@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/create-test-schema.xml
+  - include:
+      file: db/changelog/insert-user-data.xml

@@ -1,6 +1,7 @@
 package com.isrc.dao;
 
 
+import com.isrc.exceptions.Exceptions;
 import com.isrc.models.Response;
 import com.isrc.models.UserVO;
 import com.isrc.repositories.UserRepo;
@@ -22,7 +23,7 @@ public class UserDao {
 
   public Response insertUser(UserVO user)
   {
-	Response res = new Response();
+	Response res;
     UserVO uservo;
     try {
     	  if (userrepo.findByUsername(user.getUsername())==null)
@@ -60,20 +61,13 @@ public class UserDao {
 
   public UserVO SelectUser(String username)
   {
-    UserVO user = new UserVO();
-    try {
-          if(usermap.get(username) == null) {
-            user = userrepo.findByUsername(username);
-            usermap.put(user.getUsername(),user);
-          }
-
-          else user = usermap.get(username);
-
-
-    }catch (Exception ex)
-    {
-      System.out.println("User select error."+ex.toString());
+    UserVO user;
+    if(usermap.get(username) == null) {
+      user = userrepo.findByUsername(username) ;
+      if (user==null) throw new Exceptions(username);
+      usermap.put(user.getUsername(),user);
     }
+    else user = usermap.get(username);
     return user;
   }
 

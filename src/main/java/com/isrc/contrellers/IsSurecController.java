@@ -36,6 +36,7 @@ public class IsSurecController {
 		return new ResponseEntity<Response>(isSurecService.LoginCheck(loginuser), HttpStatus.OK);
 	}
 
+
 	@PostMapping(value="/SelectUser", produces= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserVO> SelectUser(@RequestParam String UserName){
 		return new ResponseEntity<UserVO>(isSurecService.SelectUser(UserName), HttpStatus.OK);

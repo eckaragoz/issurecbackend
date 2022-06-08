@@ -10,18 +10,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class IsSurecService {
-
-
   
 private UserDao userdao;
-
-
 
 @Autowired  
 public IsSurecService(UserDao userdao) {
     this.userdao = userdao;
 }
-
 
   public Response insertUser(UserVO uservo)
   { 

@@ -6,6 +6,8 @@ import com.isrc.models.Response;
 import com.isrc.models.UserCeck;
 import com.isrc.models.UserVO;
 import com.isrc.services.IsSurecService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@Api(value = "Demo Processes Api documentation")
 public class IsSurecController {
 
 
@@ -29,18 +32,20 @@ public class IsSurecController {
 		this.isSurecService = isSurecService;
 	}
 
-
+	@ApiOperation(value = "Insert new user method")
 	@PostMapping(value="/InsertUser", produces= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Response> InsertUser(@RequestBody UserVO user){
 		return new ResponseEntity<>(isSurecService.insertUser(user), HttpStatus.OK);
 	}
 
+	@ApiOperation(value = "Login authentication control")
 	@PostMapping(value="/LoginCheck", produces= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Response> LoginCheck(@RequestBody UserCeck loginuser){
 		return new ResponseEntity<>(isSurecService.LoginCheck(loginuser), HttpStatus.OK);
 	}
 
 
+	@ApiOperation(value = "it use that search a user")
 	@PostMapping(value="/SelectUser", produces= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserVO> SelectUser(@RequestParam String UserName){
 		return new ResponseEntity<>(isSurecService.SelectUser(UserName), HttpStatus.OK);
